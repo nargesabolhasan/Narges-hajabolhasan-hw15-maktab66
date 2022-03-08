@@ -10,6 +10,7 @@ export default class Todoform extends Component {
             inputValue: ''
         }
     }
+    //-----------
     formSubmit = (e) => {
         e.preventDefault();
         this.props.submithandler(this.state);
@@ -17,6 +18,7 @@ export default class Todoform extends Component {
             inputValue: ''
         })
     };
+    //-----------
     changeHandler = (e) => {
         const value = e.target.value
         this.setState({ inputValue: value })
@@ -37,10 +39,12 @@ export default class Todoform extends Component {
                             value={inputValue}
                             placeholder="enter something to do..."
                             onChange={this.changeHandler}
-                            
+
                         />
                     </Form.Group>
-                    <Button type="submit">Add</Button>
+                    <Button
+                        type="submit"
+                    >Add</Button>
                 </Form>
             </div>
         )

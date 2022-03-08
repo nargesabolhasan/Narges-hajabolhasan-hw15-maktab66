@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Todoform from './Todoform'
 import Todolist from './Todolist'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Todo extends Component {
@@ -9,27 +9,70 @@ export default class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      list: [],
+      done: []
     }
   }
-
-  submitHandler = (contact) => {
+  //-----------
+  addTodo = (todo) => {
     this.setState({
-      list: [...this.state.list, contact]
+      list: [...this.state.list, todo]
     })
   }
-
+  //----------
+  removeTodo = (todo) => {
+    let listAfterDelete = this.state.list.filter(l => l !== todo);
+    this.setState({ list: listAfterDelete })
+  }
+  //-----------
+  doneTodo = (todo) => {
+     this.setState({ done: [todo, ...this.state.done] })
+  }
+  //-----------
+  undoItem = (todo) => {
+    let listAfterUndo = this.state.done.filter(l => l !== todo);
+    this.setState({ 
+      done: listAfterUndo,
+      list: [...this.state.list, todo]
+    })
+  }
+  //-------------
+  componentWillUnmount() {
+    this.removeTodo()
+    this.doneTodo()
+    this.undoItem()
+  }
 
   render() {
     return (
       <div>
-        {/* <Todoform addItem-to-list={this.addTodo}/>
-        <Todolist listItem={ this.state.list} remove={this.removeTodo }  doneTodo={ this.doneTodo }  addTodo={this.addTodo  } /> */}
         <Container>
           <Row>
             <Col>
-              <Todoform submithandler={this.submitHandler} />
-              <Todolist data={this.state.list} />
+              <Todoform
+                submithandler={this.addTodo}
+              // doneTodo={this.doneTodo}
+              />
+              <Todolist
+                data={this.state.list}
+                removingTodo={this.removeTodo}
+                doneTodo={this.doneTodo}
+              />
+              <div>
+                <ul>
+                  {this.state.done.map((item, i) => {
+                    return (
+                      <li key={i}>
+                        {item.inputValue}
+                        <Button
+                        onClick={() => this.undoItem(item)}
+                           > Undo
+                        </Button>
+                        </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </Col>
           </Row>
         </Container>
