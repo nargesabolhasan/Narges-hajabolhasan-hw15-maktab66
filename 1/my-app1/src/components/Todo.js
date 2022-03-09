@@ -86,7 +86,7 @@ export default class Todo extends Component {
                     <li key={i}
                       className={style.doneHolder}
                     >
-                      <span className="mx-auto fs-3 ">
+                      <span className="mx-auto fs-5 ">
                         {item.ban.text}
                       </span>
                       <Button
