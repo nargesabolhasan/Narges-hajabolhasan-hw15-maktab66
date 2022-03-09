@@ -1,25 +1,33 @@
-$colors:(
-    'light-Purple':rgb(159, 159, 236),
-    'dark-Purple':rgb(88, 46, 112),
-);
-@each $name ,$code in $colors {
-    .bg-#{$name}{
-        background-color:$code
-    }
-    
-}
-
 ul{
     list-style-type:  none;
 }
 .doneHolder{
     background-color:rgb(130, 219, 130);
-}
-.ulList{
-    background-color:rgb(130, 219, 130);
+    border-radius: 30px;
+    margin-top: 10px;
 }
 input[type=text]:disabled {
-    background: rgb(170, 170, 170);
+    margin:0 5px;
+    background-color: rgb(201, 224, 253);
+    border:1px solid rgb(0, 0, 0);
+
+    
   }
+.h5text{
+    color: rgb(88, 46, 112);
+}
+.back{
+    background-color: rgb(246, 246, 199); 
+}
+.inputstyle{
+    background-color: white;
+    border:1px solid rgb(0, 0, 0);
+    margin-left: 5px;
+    font-family: 'Lalezar', cursive;
+
+}
+h1,h3,.btn{
+    font-family: 'Lalezar', cursive;
+}
 
 

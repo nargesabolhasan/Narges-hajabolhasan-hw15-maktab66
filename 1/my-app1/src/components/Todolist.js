@@ -32,31 +32,36 @@ class Todolist extends Component {
             <Form>
                 {this.props.data.map((item, i) => {
                     return (
-                        <li
-                            className="d-flex justify-content-between"
-                            key={i}
-                        >
-                            <Button key={i} onDoubleClick={this.handleEditing}>edit</Button>
-                            <Form.Control
-                                disabled={true}
-                                id={ item.id}
-                                className="edit"
-                                type="text"
-                                value={item.inputValue}
-                                onChange={(e) => {
-                                    this.props.setUpdate(e.target.value, e.target.id)
-                                    console.log(e.target.id)
+                        <div ClassName={style.back}>
+                            <li
+                                className="d-flex justify-content-between mb-4"
+                                key={i}>
+                                <Button
+                                    className="bg-warning border-warning text-dark"
+                                    onClick={this.handleEditing}>edit</Button>
+                                <Form.Control
+                                    className={style.inputstyle}
+                                    disabled={true}
+                                    id={item.ban.id}
+                                    type="text"
+                                    value={item.ban.text}
+                                    onChange={(e) => {
+                                        this.props.setUpdate(e.target.value, e.target.id)
+                                        console.log(item.ban.text, item.ban.id)
 
-                                }}
-                                onKeyDown={this.handleUpdatedDone}
-                            />
-                            <Button
-                                onClick={() => this.removeItem(item)}
-                            >Remove</Button>
-                            <Button
-                                onClick={() => this.doneItem(item)}
-                            >Done</Button>
-                        </li>
+                                    }}
+                                    onKeyDown={this.handleUpdatedDone}
+                                />
+                                <Button
+                                    className="bg-danger border-danger text-white mx-2"
+                                    onClick={() => this.removeItem(item)}
+                                >Remove</Button>
+                                <Button
+                                    className="bg-success border-success text-white"
+                                    onClick={() => this.doneItem(item)}
+                                >Done</Button>
+                            </li>
+                        </div>
                     );
                 })}
 

@@ -17,17 +17,20 @@ export default class Todo extends Component {
   //-----------
   addTodo = (todo) => {
     this.setState({
-      list: [...this.state.list, todo.text]
+      list: [...this.state.list, todo]
     })
+    console.log(todo)
   }
   //----------
   removeTodo = (todo) => {
     let listAfterDelete = this.state.list.filter(l => l !== todo);
     this.setState({ list: listAfterDelete })
+    console.log(todo)
   }
   //-----------
   doneTodo = (todo) => {
     this.setState({ done: [todo, ...this.state.done] })
+    console.log(todo)
   }
   //-----------
   undoItem = (todo) => {
@@ -42,12 +45,12 @@ export default class Todo extends Component {
   setUpdate = (updatedTitle, targetInput) => {
     this.setState({
       list: this.state.list.map(todo => {
-         if (todo.id === targetInput) {
-        todo.inputValue = updatedTitle
-        
-         }
-        // return todo
-        console.log(todo)
+        if (todo.ban.id === targetInput) {
+          todo.ban.text = updatedTitle
+
+        }
+        return todo
+
       }),
     })
   }
@@ -65,7 +68,7 @@ export default class Todo extends Component {
       <Container  >
         <Row>
           <Col>
-            <Todoform 
+            <Todoform
               submithandler={this.addTodo}
             />
             <Todolist
@@ -74,17 +77,20 @@ export default class Todo extends Component {
               doneTodo={this.doneTodo}
               setUpdate={this.setUpdate}
             />
-            <div className={style.doneHolder}>
+            <div ClassName="bg-secondary">
+              <h3>Done items:</h3>
               <ul >
                 {this.state.done.map((item, i) => {
                   return (
                     <li key={i}
-                      className="d-flex justify-content-between"
+
+                      className={style.doneHolder}
                     >
                       <span>
-                        {item.inputValue}
+                        {item.ban.text}
                       </span>
                       <Button
+                        className="bg-success border-success"
                         onClick={() => this.undoItem(item)}
                       > Undo
                       </Button>

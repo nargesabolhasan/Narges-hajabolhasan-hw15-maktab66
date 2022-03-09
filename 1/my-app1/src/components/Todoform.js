@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import style from'./style.module.scss';
+import style from './style.module.scss';
 export default class Todoform extends Component {
     constructor(props) {
         super(props);
@@ -21,8 +21,10 @@ export default class Todoform extends Component {
     formSubmit = (e) => {
         e.preventDefault();
         this.props.submithandler({
-            text: this.state,
-            id:this.randomId()
+            ban: {
+                text: this.state.inputValue,
+                id: this.randomId()
+            }
         });
         this.setState({
             inputValue: ''
@@ -35,24 +37,25 @@ export default class Todoform extends Component {
     };
     //----------
     render() {
-         const { inputValue} = this.state
+        const { inputValue } = this.state
         return (
             <div className="mb-3">
                 <h1 className="text-center">TODO</h1>
                 <Form onSubmit={this.formSubmit}>
                     <Form.Group className="d-flex flex-row justify-content-center">
                         <Form.Control
+                            className={style.inputstyle}
                             type="text"
                             name="todo"
                             value={inputValue}
                             placeholder="enter something to do..."
                             onChange={this.changeHandler}
                         />
-                         <Button
-                        type="submit"
-                    >Add</Button>
+                        <Button
+                            type="submit"
+                        >Add</Button>
                     </Form.Group>
-                   
+
                 </Form>
             </div>
         )
