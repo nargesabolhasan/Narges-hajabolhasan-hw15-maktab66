@@ -11,6 +11,7 @@ export default class Todo extends Component {
     this.state = {
       list: [],
       done: []
+
     }
   }
   //-----------
@@ -26,23 +27,40 @@ export default class Todo extends Component {
   }
   //-----------
   doneTodo = (todo) => {
-     this.setState({ done: [todo, ...this.state.done] })
+    this.setState({ done: [todo, ...this.state.done] })
   }
   //-----------
   undoItem = (todo) => {
     let listAfterUndo = this.state.done.filter(l => l !== todo);
-    this.setState({ 
+    this.setState({
       done: listAfterUndo,
       list: [...this.state.list, todo]
     })
   }
-  //-------------
+
+  //------------
+  setUpdate = (updatedTitle) => {
+    this.setState({
+      list: this.state.list.map(todo => {
+        // if (todo.id === id) {
+          todo.inputValue = updatedTitle
+          console.log(todo.id)
+        //}
+        return todo
+      }),
+    })
+  }
+  componentDidUpdate(){
+
+  }
+  //-----------
+
   componentWillUnmount() {
     this.removeTodo()
     this.doneTodo()
     this.undoItem()
   }
-
+  //-----------
   render() {
     return (
       <div>
@@ -51,12 +69,13 @@ export default class Todo extends Component {
             <Col>
               <Todoform
                 submithandler={this.addTodo}
-              // doneTodo={this.doneTodo}
               />
               <Todolist
                 data={this.state.list}
                 removingTodo={this.removeTodo}
                 doneTodo={this.doneTodo}
+                setUpdate={this.setUpdate}
+              // id={this.randomId}
               />
               <div>
                 <ul>
@@ -65,10 +84,10 @@ export default class Todo extends Component {
                       <li key={i}>
                         {item.inputValue}
                         <Button
-                        onClick={() => this.undoItem(item)}
-                           > Undo
+                          onClick={() => this.undoItem(item)}
+                        > Undo
                         </Button>
-                        </li>
+                      </li>
                     )
                   })}
                 </ul>

@@ -22,16 +22,15 @@ export default class Todoform extends Component {
     changeHandler = (e) => {
         const value = e.target.value
         this.setState({ inputValue: value })
-        console.log(value)
+        // console.log(value)
     };
-    //-----------
-
+    //----------
     render() {
-        const { inputValue } = this.state;
+         const { inputValue} = this.state
         return (
             <div >
                 <Form onSubmit={this.formSubmit}>
-                    <Form.Group controlId="name-input">
+                    <Form.Group >
                         <Form.Label>TODO</Form.Label>
                         <Form.Control
                             type="text"
@@ -39,7 +38,7 @@ export default class Todoform extends Component {
                             value={inputValue}
                             placeholder="enter something to do..."
                             onChange={this.changeHandler}
-
+                            
                         />
                     </Form.Group>
                     <Button
