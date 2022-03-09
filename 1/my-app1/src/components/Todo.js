@@ -3,6 +3,7 @@ import Todoform from './Todoform'
 import Todolist from './Todolist'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { IoArrowUndoCircleOutline } from "react-icons/io5";
 import style from './style.module.scss';
 export default class Todo extends Component {
 
@@ -65,34 +66,34 @@ export default class Todo extends Component {
   //-----------
   render() {
     return (
-      <Container  >
+      <Container >
         <Row>
           <Col>
             <Todoform
               submithandler={this.addTodo}
             />
-            <Todolist
+            <Todolist 
               data={this.state.list}
               removingTodo={this.removeTodo}
               doneTodo={this.doneTodo}
               setUpdate={this.setUpdate}
             />
-            <div ClassName="bg-secondary">
-              <h3>Done items:</h3>
+            <div className='bg-secondary p-2'>
+              <h3 className='text-center'>Done items:</h3>
               <ul >
                 {this.state.done.map((item, i) => {
                   return (
                     <li key={i}
-
                       className={style.doneHolder}
                     >
-                      <span>
+                      <span className="mx-auto fs-3 ">
                         {item.ban.text}
                       </span>
                       <Button
                         className="bg-success border-success"
                         onClick={() => this.undoItem(item)}
-                      > Undo
+                      > 
+                      <IoArrowUndoCircleOutline className="fs-4 mx-auto"/>
                       </Button>
                     </li>
                   )

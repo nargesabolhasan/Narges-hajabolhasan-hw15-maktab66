@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { IoAddCircleOutline } from "react-icons/io5";
 import style from './style.module.scss';
+
 export default class Todoform extends Component {
     constructor(props) {
         super(props);
@@ -39,8 +41,8 @@ export default class Todoform extends Component {
     render() {
         const { inputValue } = this.state
         return (
-            <div className="mb-3">
-                <h1 className="text-center">TODO</h1>
+            <div className="mb-3 mt-5  bg-dark p-4">
+                <h1 className="text-center text-white">TODO</h1>
                 <Form onSubmit={this.formSubmit}>
                     <Form.Group className="d-flex flex-row justify-content-center">
                         <Form.Control
@@ -53,7 +55,7 @@ export default class Todoform extends Component {
                         />
                         <Button
                             type="submit"
-                        >Add</Button>
+                        ><IoAddCircleOutline className="fs-3 mx-auto"/></Button>
                     </Form.Group>
 
                 </Form>

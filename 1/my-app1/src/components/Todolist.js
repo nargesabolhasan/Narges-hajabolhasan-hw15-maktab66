@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button,Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { IoPencil,IoCheckmarkCircleOutline,IoTrashBin } from "react-icons/io5";
 import style from './style.module.scss';
 
 class Todolist extends Component {
@@ -32,40 +33,45 @@ class Todolist extends Component {
             <Form>
                 {this.props.data.map((item, i) => {
                     return (
-                        <div ClassName={style.back}>
+                        <Container >
                             <li
-                                className="d-flex justify-content-between mb-4"
+                                className="d-flex justify-content-between bg-dark mb-4 p-2 "
                                 key={i}>
-                                <Button
-                                    className="bg-warning border-warning text-dark"
-                                    onClick={this.handleEditing}>edit</Button>
-                                <Form.Control
-                                    className={style.inputstyle}
-                                    disabled={true}
-                                    id={item.ban.id}
-                                    type="text"
-                                    value={item.ban.text}
-                                    onChange={(e) => {
-                                        this.props.setUpdate(e.target.value, e.target.id)
-                                        console.log(item.ban.text, item.ban.id)
 
-                                    }}
-                                    onKeyDown={this.handleUpdatedDone}
-                                />
                                 <Button
-                                    className="bg-danger border-danger text-white mx-2"
-                                    onClick={() => this.removeItem(item)}
-                                >Remove</Button>
-                                <Button
-                                    className="bg-success border-success text-white"
-                                    onClick={() => this.doneItem(item)}
-                                >Done</Button>
-                            </li>
-                        </div>
-                    );
-                })}
+                                className="bg-warning border-warning text-dark"
+                                onClick={this.handleEditing}><IoPencil className="fs-3 mx-auto"/></Button>
+                            <Form.Control
+                                className={style.inputstyle}
+                                disabled={true}
+                                id={item.ban.id}
+                                type="text"
+                                value={item.ban.text}
+                                onChange={(e) => {
+                                    this.props.setUpdate(e.target.value, e.target.id)
+                                    console.log(item.ban.text, item.ban.id)
 
-            </Form>
+                                }}
+                                onKeyDown={this.handleUpdatedDone}
+                            />
+                            <Button
+                                className="bg-danger border-danger text-white mx-2"
+                                onClick={() => this.removeItem(item)}
+                            ><IoTrashBin className="fs-3 mx-auto"/></Button>
+                            <Button
+
+                                className="bg-success border-success text-white fa-3"
+                                onClick={() => this.doneItem(item)}
+                            >
+                                <IoCheckmarkCircleOutline className="fs-3 mx-auto"/>
+                                </Button>
+                        </li>
+                        </Container>
+        );
+    })
+}
+
+            </Form >
         );
     }
 }

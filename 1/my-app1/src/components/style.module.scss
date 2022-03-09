@@ -5,6 +5,9 @@ ul{
     background-color:rgb(130, 219, 130);
     border-radius: 30px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 input[type=text]:disabled {
     margin:0 5px;
