@@ -3,7 +3,7 @@ import Todoform from './Todoform'
 import Todolist from './Todolist'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import style from './style.module.scss';
 export default class Todo extends Component {
 
   constructor(props) {
@@ -17,7 +17,7 @@ export default class Todo extends Component {
   //-----------
   addTodo = (todo) => {
     this.setState({
-      list: [...this.state.list, todo]
+      list: [...this.state.list, todo.text]
     })
   }
   //----------
@@ -39,22 +39,21 @@ export default class Todo extends Component {
   }
 
   //------------
-  setUpdate = (updatedTitle) => {
+  setUpdate = (updatedTitle, targetInput) => {
     this.setState({
       list: this.state.list.map(todo => {
-        // if (todo.id === id) {
-          todo.inputValue = updatedTitle
-          console.log(todo.id)
-        //}
-        return todo
+         if (todo.id === targetInput) {
+        todo.inputValue = updatedTitle
+        
+         }
+        // return todo
+        console.log(todo)
       }),
     })
   }
-  componentDidUpdate(){
-
+  componentDidUpdate() {
   }
   //-----------
-
   componentWillUnmount() {
     this.removeTodo()
     this.doneTodo()
@@ -63,39 +62,40 @@ export default class Todo extends Component {
   //-----------
   render() {
     return (
-      <div>
-        <Container>
-          <Row>
-            <Col>
-              <Todoform
-                submithandler={this.addTodo}
-              />
-              <Todolist
-                data={this.state.list}
-                removingTodo={this.removeTodo}
-                doneTodo={this.doneTodo}
-                setUpdate={this.setUpdate}
-              // id={this.randomId}
-              />
-              <div>
-                <ul>
-                  {this.state.done.map((item, i) => {
-                    return (
-                      <li key={i}>
+      <Container  >
+        <Row>
+          <Col>
+            <Todoform 
+              submithandler={this.addTodo}
+            />
+            <Todolist
+              data={this.state.list}
+              removingTodo={this.removeTodo}
+              doneTodo={this.doneTodo}
+              setUpdate={this.setUpdate}
+            />
+            <div className={style.doneHolder}>
+              <ul >
+                {this.state.done.map((item, i) => {
+                  return (
+                    <li key={i}
+                      className="d-flex justify-content-between"
+                    >
+                      <span>
                         {item.inputValue}
-                        <Button
-                          onClick={() => this.undoItem(item)}
-                        > Undo
-                        </Button>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                      </span>
+                      <Button
+                        onClick={() => this.undoItem(item)}
+                      > Undo
+                      </Button>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }

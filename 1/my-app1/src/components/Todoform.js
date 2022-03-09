@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
-
+import style from'./style.module.scss';
 export default class Todoform extends Component {
     constructor(props) {
         super(props);
@@ -10,10 +9,21 @@ export default class Todoform extends Component {
             inputValue: ''
         }
     }
+    randomId = (() => {
+        const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
+        return uint32.toString(16);
+    })
+    //----------
+    componentDidMount() {
+        this.randomId()
+    }
     //-----------
     formSubmit = (e) => {
         e.preventDefault();
-        this.props.submithandler(this.state);
+        this.props.submithandler({
+            text: this.state,
+            id:this.randomId()
+        });
         this.setState({
             inputValue: ''
         })
@@ -22,28 +32,27 @@ export default class Todoform extends Component {
     changeHandler = (e) => {
         const value = e.target.value
         this.setState({ inputValue: value })
-        // console.log(value)
     };
     //----------
     render() {
          const { inputValue} = this.state
         return (
-            <div >
+            <div className="mb-3">
+                <h1 className="text-center">TODO</h1>
                 <Form onSubmit={this.formSubmit}>
-                    <Form.Group >
-                        <Form.Label>TODO</Form.Label>
+                    <Form.Group className="d-flex flex-row justify-content-center">
                         <Form.Control
                             type="text"
                             name="todo"
                             value={inputValue}
                             placeholder="enter something to do..."
                             onChange={this.changeHandler}
-                            
                         />
-                    </Form.Group>
-                    <Button
+                         <Button
                         type="submit"
                     >Add</Button>
+                    </Form.Group>
+                   
                 </Form>
             </div>
         )

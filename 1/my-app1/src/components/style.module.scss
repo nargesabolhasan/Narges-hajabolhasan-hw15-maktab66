@@ -1,0 +1,25 @@
+$colors:(
+    'light-Purple':rgb(159, 159, 236),
+    'dark-Purple':rgb(88, 46, 112),
+);
+@each $name ,$code in $colors {
+    .bg-#{$name}{
+        background-color:$code
+    }
+    
+}
+
+ul{
+    list-style-type:  none;
+}
+.doneHolder{
+    background-color:rgb(130, 219, 130);
+}
+.ulList{
+    background-color:rgb(130, 219, 130);
+}
+input[type=text]:disabled {
+    background: rgb(170, 170, 170);
+  }
+
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import style from './style.module.scss';
 
 class Todolist extends Component {
 
@@ -24,30 +25,28 @@ class Todolist extends Component {
         }
     }
     //----------
-    randomId = (() => {
-        const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
-        return uint32.toString(16);
-    })
-    //----------
-    componentDidMount() {
-        this.randomId()
-    }
+
     //----------
     render() {
         return (
             <Form>
                 {this.props.data.map((item, i) => {
                     return (
-                        <li key={i} id={`${this.randomId}`} >
+                        <li
+                            className="d-flex justify-content-between"
+                            key={i}
+                        >
                             <Button key={i} onDoubleClick={this.handleEditing}>edit</Button>
                             <Form.Control
                                 disabled={true}
+                                id={ item.id}
                                 className="edit"
                                 type="text"
                                 value={item.inputValue}
                                 onChange={(e) => {
-                                    this.props.setUpdate(e.target.value)
-                                    
+                                    this.props.setUpdate(e.target.value, e.target.id)
+                                    console.log(e.target.id)
+
                                 }}
                                 onKeyDown={this.handleUpdatedDone}
                             />

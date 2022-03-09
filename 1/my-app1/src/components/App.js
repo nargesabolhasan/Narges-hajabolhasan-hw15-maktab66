@@ -1,7 +1,12 @@
 import Todo from "./Todo";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import style from './style.module.scss';
 function App() {
   return (
-    <div className="App">
+    <div className={style.appBack}
+
+    
+    >
       <header className="App-header">
         <Todo/>
       </header>
