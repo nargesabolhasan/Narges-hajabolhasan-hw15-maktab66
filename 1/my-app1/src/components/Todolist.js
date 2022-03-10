@@ -47,7 +47,7 @@ class Todolist extends Component {
                                 className="d-flex justify-content-between bg-dark mb-4 p-3"
                                 style={{borderRadius:"50px 0px 0px 50px"}}
                                 key={i}>   
-                                <h6 className=" h6 text-white p-1 mb-4" 
+                                <h6 className=" h6 text-white p-1 d-sm-none  d-md-block " 
                                 style={{width:"150px",textAlign:"center"}}
                                 >press enter to save change</h6>
                                 <Button
