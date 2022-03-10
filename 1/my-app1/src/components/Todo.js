@@ -70,13 +70,13 @@ export default class Todo extends Component {
             <Todoform
               submithandler={this.addTodo}
             />
-            <Todolist 
+            <Todolist
               data={this.state.list}
               removingTodo={this.removeTodo}
               doneTodo={this.doneTodo}
               setUpdate={this.setUpdate}
             />
-            <div className='bg-secondary p-2'>
+            <div className='bg-dark text-white p-2'>
               <h3 className='text-center'>Done items:</h3>
               <ul >
                 {this.state.done.map((item, i) => {
@@ -84,15 +84,17 @@ export default class Todo extends Component {
                     <li key={i}
                       className={style.doneHolder}
                     >
-                      <span className="mx-auto fs-5 ">
-                        {item.ban.text}
-                      </span>
                       <Button
                         className="bg-success border-success"
                         onClick={() => this.undoItem(item)}
-                      > 
-                      <IoArrowUndoCircleOutline className="fs-4 mx-auto"/>
+                      >
+                        <IoArrowUndoCircleOutline className="fs-4 mx-auto" />
                       </Button>
+                      <span className="p-2 w-6 bd-highlight fs-5 ">
+                        {item.ban.text}
+                      </span>
+
+                      <apan className="text-success float-end fs-2 px-4">{i + 1}</apan>
                     </li>
                   )
                 })}

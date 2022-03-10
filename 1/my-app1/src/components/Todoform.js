@@ -43,7 +43,7 @@ export default class Todoform extends Component {
         const { inputValue } = this.state
         return (
             <div className="mb-3 mt-5  bg-dark p-4">
-                <h1 className="text-center text-white">TODO</h1>
+                <h1 className="text-center text-warning">TODO</h1>
                 <Form onSubmit={this.formSubmit}>
                     <Form.Group className="d-flex flex-row justify-content-center">
                         <Form.Control
@@ -55,8 +55,9 @@ export default class Todoform extends Component {
                             onChange={this.changeHandler}
                         />
                         <Button
+                            className="bg-warning border-warning"
                             type="submit"
-                        ><IoAddCircleOutline className="fs-3 mx-auto"/></Button>
+                        ><IoAddCircleOutline className="fs-3 mx-auto text-dark"/></Button>
                     </Form.Group>
 
                 </Form>

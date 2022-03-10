@@ -1,10 +1,13 @@
+$font: 'Lalezar', cursive;
 ul{
     list-style-type:  none;
 }
 .doneHolder{
+    color:black;
     background-color:rgb(130, 219, 130);
     border-radius: 30px;
     margin-top: 10px;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +18,7 @@ input[type=text]:disabled {
     border:1px solid rgb(0, 0, 0);
 
     
-  }
+ }
 .h5text{
     color: rgb(88, 46, 112);
 }
@@ -24,13 +27,15 @@ input[type=text]:disabled {
 }
 .inputstyle{
     background-color: white;
-    border:1px solid rgb(0, 0, 0);
-    margin-left: 5px;
-    font-family: 'Lalezar', cursive;
+    border:5px solid rgb(236, 194, 4);
+    margin:0 5px;
+    font-family:$font
 
 }
 h1,h3,.btn{
-    font-family: 'Lalezar', cursive;
+    font-family:$font
 }
+
+
 
 
