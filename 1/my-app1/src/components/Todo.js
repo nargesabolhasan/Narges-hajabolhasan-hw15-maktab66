@@ -55,8 +55,6 @@ export default class Todo extends Component {
       }),
     })
   }
-  componentDidUpdate() {
-  }
   //-----------
   componentWillUnmount() {
     this.removeTodo()

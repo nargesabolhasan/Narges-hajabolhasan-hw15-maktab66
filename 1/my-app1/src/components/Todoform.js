@@ -11,6 +11,7 @@ export default class Todoform extends Component {
             inputValue: ''
         }
     }
+    //-----------
     randomId = (() => {
         const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
         return uint32.toString(16);
@@ -37,7 +38,7 @@ export default class Todoform extends Component {
         const value = e.target.value
         this.setState({ inputValue: value })
     };
-    //----------
+    //-----------
     render() {
         const { inputValue } = this.state
         return (

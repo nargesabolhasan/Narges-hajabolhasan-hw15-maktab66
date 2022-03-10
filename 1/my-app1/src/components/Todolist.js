@@ -26,7 +26,10 @@ class Todolist extends Component {
         }
     }
     //----------
-
+    componentWillUnmount(){
+        this.removeItem()
+        this.doneItem()
+    }
     //----------
     render() {
         return (
