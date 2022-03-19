@@ -59,7 +59,6 @@ export default class Todoform extends Component {
                             type="submit"
                         ><IoAddCircleOutline className="fs-3 mx-auto text-dark"/></Button>
                     </Form.Group>
-
                 </Form>
             </div>
         )

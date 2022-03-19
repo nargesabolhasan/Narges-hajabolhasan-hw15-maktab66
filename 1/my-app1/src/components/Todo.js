@@ -15,23 +15,21 @@ export default class Todo extends Component {
 
     }
   }
+
   //-----------
   addTodo = (todo) => {
     this.setState({
       list: [...this.state.list, todo]
     })
-    console.log(todo)
   }
   //----------
   removeTodo = (todo) => {
     let listAfterDelete = this.state.list.filter(l => l !== todo);
     this.setState({ list: listAfterDelete })
-    console.log(todo)
   }
   //-----------
   doneTodo = (todo) => {
     this.setState({ done: [todo, ...this.state.done] })
-    console.log(todo)
   }
   //-----------
   undoItem = (todo) => {
@@ -56,12 +54,15 @@ export default class Todo extends Component {
     })
   }
   //-----------
-  componentWillUnmount() {
-    this.removeTodo()
-    this.doneTodo()
-    this.undoItem()
+  randomId = (() => {
+    const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
+    return uint32.toString(16);
+  })
+  //----------
+  componentDidMount() {
+    this.randomId()
   }
-  //-----------
+  //----------
   render() {
     return (
       <Container >
@@ -76,25 +77,33 @@ export default class Todo extends Component {
               doneTodo={this.doneTodo}
               setUpdate={this.setUpdate}
             />
-            <div className='bg-dark text-white p-2'>
+            <div
+              className='bg-dark text-white p-2'>
               <h3 className='text-center'>Done items:</h3>
               <ul >
                 {this.state.done.map((item, i) => {
                   return (
-                    <li key={i}
+                    <li key={item.ban.id}
                       className={style.doneHolder}
                     >
                       <Button
+                        key={this.randomId()}
                         className="bg-success border-success"
                         onClick={() => this.undoItem(item)}
                       >
-                        <IoArrowUndoCircleOutline className="fs-4 mx-auto" />
+                        <IoArrowUndoCircleOutline
+                          key={this.randomId()}
+                          className="fs-4 mx-auto" />
                       </Button>
-                      <span className="p-2 w-6 bd-highlight fs-5 ">
+                      <span
+                        key={this.randomId()}
+                        className="p-2 w-6 bd-highlight fs-5 ">
                         {item.ban.text}
                       </span>
 
-                      <apan className="text-success float-end fs-2 px-4">{i + 1}</apan>
+                      <span
+                        key={this.randomId()}
+                        className="text-success float-end fs-2 px-4">{i + 1}</span>
                     </li>
                   )
                 })}
